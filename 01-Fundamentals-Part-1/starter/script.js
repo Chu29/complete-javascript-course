@@ -36,3 +36,9 @@ console.log(Boolean(NaN));
 console.log(Boolean(12));
 console.log(Boolean("Hello"));
 console.log(Boolean({}));
+
+ageChu >= 21
+  ? console.log("I'd love some wine please")
+  : console.log("Give me some water");
+
+console.log(`I like to drink ${ageChu >= 21 ? "Water" : "Wine"}`);
