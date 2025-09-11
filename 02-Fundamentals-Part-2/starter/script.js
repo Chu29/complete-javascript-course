@@ -73,9 +73,26 @@
 
 //  Intro to Arrays
 
+// const friends = ["Peter", "Brian", "Meg"];
+// console.log(friends[0]);
+// console.log(friends[1]);
+// console.log(friends[2]);
+// console.log(friends.length);
+// console.log(friends[friends.length - 1]);
+
+// Basic array methods
 const friends = ["Peter", "Brian", "Meg"];
-console.log(friends[0]);
-console.log(friends[1]);
-console.log(friends[2]);
-console.log(friends.length);
-console.log(friends[friends.length - 1]);
+//add elements
+friends.push("Carl"); // add Carl at end of array
+console.log(friends);
+friends.unshift("Olson");
+console.log(friends); // add Olson at start of array
+
+//remove elements
+friends.pop();
+console.log(friends);
+friends.shift();
+console.log(friends);
+
+console.log(friends.indexOf("Brian"));
+console.log(friends.includes("Brian"));
