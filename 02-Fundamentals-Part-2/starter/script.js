@@ -1,9 +1,9 @@
 "use strict";
-// function logger() {
-//   console.log("Hello, I'm Chu!");
-// }
+function logger() {
+  console.log("Hello, I'm Chu!");
+}
 
-// logger();
+logger();
 
 // function fruitProcessor(apples, oranges) {
 //   console.log(apples, oranges);
@@ -23,19 +23,19 @@
  */
 
 // function declaration
-// function calcAge(birthYear) {
-//   return 2025 - birthYear;
-// }
+function calcAge(birthYear) {
+  return 2025 - birthYear;
+}
 
-// const age = calcAge(2003);
-// console.log(age);
+const age = calcAge(2003);
+console.log(age);
 
 // function expression which returns an anonymous function
-// const calcAge1 = function (birthYear) {
-//   return 2025 - birthYear;
-// };
-// const age1 = calcAge1(2004);
-// console.log(age1);
+const calcAge1 = function (birthYear) {
+  return 2025 - birthYear;
+};
+const age1 = calcAge1(2004);
+console.log(age1);
 
 // Arrow Function
 const calcAge3 = (birthYear) => {
@@ -52,3 +52,21 @@ const yearsUntilRetirement = (birthYear, firstName) => {
 };
 
 console.log(yearsUntilRetirement(2003, "Chu"));
+
+// Function calling another function
+
+const cutFruitPieces = (fruit) => {
+  return fruit * 4;
+};
+
+const fruitProcessor = (apples, oranges) => {
+  const applePieces = cutFruitPieces(apples);
+  const orangePieces = cutFruitPieces(oranges);
+
+  console.log(apples, oranges);
+  const juice = `Juice with ${applePieces} pieces of apple and ${orangePieces} pieces of orange.`;
+
+  return juice;
+};
+
+console.log(fruitProcessor(2, 3));
