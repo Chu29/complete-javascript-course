@@ -165,18 +165,26 @@ TEST DATA: 125, 555, and 44.
 // chu.location = "Cameroon";
 // console.log(chu);
 
-const chu = {
-  firstName: "Mueghe",
-  middleName: "Abuemkeze",
-  lastName: "Chu",
-  age: 20,
-  birthYear: 2003,
-  job: "teacher",
-  friends: ["Peter", "Brian", "Meg"],
-  hasDriversLicense: false,
-  calcAge: function () {
-    return 2025 - this.birthYear;
-  },
-};
+// const chu = {
+//   firstName: "Mueghe",
+//   middleName: "Abuemkeze",
+//   lastName: "Chu",
+//   age: 20,
+//   birthYear: 2003,
+//   job: "teacher",
+//   friends: ["Peter", "Brian", "Meg"],
+//   hasDriversLicense: false,
+//   calcAge: function () {
+//     return 2025 - this.birthYear;
+//   },
+// };
 
-console.log(chu.calcAge());
+// console.log(chu.calcAge());
+
+/**
+ * The FOR LOOP
+ */
+
+for (let rep = 1; rep <= 10; rep++) {
+  console.log(`Lifting weights repetition ${rep}`);
+}
