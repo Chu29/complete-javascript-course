@@ -248,16 +248,66 @@ TEST DATA: 125, 555, and 44.
 
 // while loop
 
-let rep = 1;
+// let rep = 1;
 
-while (rep <= 10) {
-  // console.log(`Lifting weights repetition ${rep}`);
-  rep++;
+// while (rep <= 10) {
+//   // console.log(`Lifting weights repetition ${rep}`);
+//   rep++;
+// }
+
+// let dice = Math.trunc(Math.random() * 6 + 1);
+
+// while (dice !== 6) {
+//   console.log(`You rolled a ${dice}`);
+//   dice = Math.trunc(Math.random() * 6 + 1);
+// }
+
+/**
+ * CHALLENGE #4
+Let's improve Steven's tip calculator even more, this time using loops!
+
+Your tasks:
+
+Create an array called bills containing all 10 test bill values.
+
+Create empty arrays for the tips and the totals (tips and totals)
+
+Use the calcTip function we wrote before (included in the starter code) to calculate tips and total values (bill + tip) for every bill value in the bills array. Use a for loop to perform the 10 calculations!
+
+
+
+TEST DATA: 22, 295, 176, 440, 37, 105, 10, 1100, 86, and 52.
+
+
+ */
+
+const bills = [22, 295, 176, 440, 37, 105, 10, 1100, 86, 52];
+const tips = [];
+const totals = [];
+
+const calcTip = (bill) => {
+  let tip;
+  if (bill >= 50 && bill <= 300) {
+    tip = bill * (15 / 100);
+  } else {
+    tip = bill * (20 / 100);
+  }
+  return tip;
+};
+
+for (i = 0; i < bills.length; i++) {
+  tips.push(calcTip(bills[i]));
+  totals.push(calcTip(bills[i]) + bills[i]);
 }
 
-let dice = Math.trunc(Math.random() * 6 + 1);
+const calcAverage = (arr) => {
+  let sum = 0;
+  for (let i = 0; i < arr.length; i++) {
+    sum += arr[i];
+  }
+  return (average = sum / arr.length);
+};
 
-while (dice !== 6) {
-  console.log(`You rolled a ${dice}`);
-  dice = Math.trunc(Math.random() * 6 + 1);
-}
+console.log("Tips: ", tips);
+console.log("Total: ", totals);
+console.log("Average tips given today: ", calcAverage(totals));
