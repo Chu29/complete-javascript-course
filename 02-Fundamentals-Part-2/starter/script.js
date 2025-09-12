@@ -185,6 +185,41 @@ TEST DATA: 125, 555, and 44.
  * The FOR LOOP
  */
 
-for (let rep = 1; rep <= 10; rep++) {
-  console.log(`Lifting weights repetition ${rep}`);
+// for (let rep = 1; rep <= 10; rep++) {
+//   console.log(`Lifting weights repetition ${rep}`);
+// }
+
+const jonasArray = [
+  "Jonas",
+  "Olson",
+  2037 - 1991,
+  "teacher",
+  ["Micheal", "Peter", "Steven"],
+  true,
+];
+
+const types = [];
+
+for (i = 0; i < jonasArray.length; i++) {
+  //Reading from the jonasArray
+  console.log(jonasArray[i], typeof jonasArray[i]);
+
+  // Filling the types array
+  types.push(typeof jonasArray[i]);
+}
+
+console.log(types);
+
+// continue and break
+
+console.log("--- ONLY STRINGS ---");
+for (i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] !== "string") continue;
+  console.log(jonasArray[i], typeof jonasArray[i]);
+}
+
+console.log("--- BREAK WITH NUMBER---");
+for (i = 0; i < jonasArray.length; i++) {
+  if (typeof jonasArray[i] === "number") break;
+  console.log(jonasArray[i], typeof jonasArray[i]);
 }
