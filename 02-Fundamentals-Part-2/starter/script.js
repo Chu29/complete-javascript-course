@@ -189,6 +189,41 @@ TEST DATA: 125, 555, and 44.
 //   console.log(`Lifting weights repetition ${rep}`);
 // }
 
+// const jonasArray = [
+//   "Jonas",
+//   "Olson",
+//   2037 - 1991,
+//   "teacher",
+//   ["Micheal", "Peter", "Steven"],
+//   true,
+// ];
+
+// const types = [];
+
+// for (i = 0; i < jonasArray.length; i++) {
+//   //Reading from the jonasArray
+//   console.log(jonasArray[i], typeof jonasArray[i]);
+
+//   // Filling the types array
+//   types.push(typeof jonasArray[i]);
+// }
+
+// console.log(types);
+
+// // continue and break
+
+// console.log("--- ONLY STRINGS ---");
+// for (i = 0; i < jonasArray.length; i++) {
+//   if (typeof jonasArray[i] !== "string") continue;
+//   console.log(jonasArray[i], typeof jonasArray[i]);
+// }
+
+// console.log("--- BREAK WITH NUMBER---");
+// for (i = 0; i < jonasArray.length; i++) {
+//   if (typeof jonasArray[i] === "number") break;
+//   console.log(jonasArray[i], typeof jonasArray[i]);
+// }
+
 const jonasArray = [
   "Jonas",
   "Olson",
@@ -198,28 +233,15 @@ const jonasArray = [
   true,
 ];
 
-const types = [];
-
-for (i = 0; i < jonasArray.length; i++) {
-  //Reading from the jonasArray
-  console.log(jonasArray[i], typeof jonasArray[i]);
-
-  // Filling the types array
-  types.push(typeof jonasArray[i]);
+//looping backwards
+for (i = jonasArray.length - 1; i >= 0; i--) {
+  console.log(i, jonasArray[i], typeof jonasArray[i]);
 }
 
-console.log(types);
-
-// continue and break
-
-console.log("--- ONLY STRINGS ---");
-for (i = 0; i < jonasArray.length; i++) {
-  if (typeof jonasArray[i] !== "string") continue;
-  console.log(jonasArray[i], typeof jonasArray[i]);
-}
-
-console.log("--- BREAK WITH NUMBER---");
-for (i = 0; i < jonasArray.length; i++) {
-  if (typeof jonasArray[i] === "number") break;
-  console.log(jonasArray[i], typeof jonasArray[i]);
+//nested loops
+for (let exercise = 1; exercise < 4; exercise++) {
+  console.log(`------- Starting Exercise${exercise}`);
+  for (let session = 1; session < 6; session++) {
+    console.log(`Session ${session} for Exercise ${exercise}`);
+  }
 }
