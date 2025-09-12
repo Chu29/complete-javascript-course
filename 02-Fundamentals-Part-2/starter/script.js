@@ -146,4 +146,21 @@ const chu = {
   friends: ["Peter", "Brian", "Meg"],
 };
 
+console.log(chu.lastName); // Dot notation
+console.log(chu["lastName"]); // Bracket notation
+
+const interestedIn = prompt(
+  "What are you interested in knowing about Chu? Choose between firstName, middleName, lastName, age, job, friends"
+);
+
+if (chu[interestedIn]) {
+  console.log(chu[interestedIn]);
+} else {
+  console.log(
+    "Invalid! Choose between firstName, middleName, lastName, age, job, friends"
+  );
+}
+
+// adding props
+chu.location = "Cameroon";
 console.log(chu);
