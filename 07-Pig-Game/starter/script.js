@@ -1,6 +1,7 @@
 'use strict';
 
-const player0 = document.querySelector('.player--0');
+const player0Elt = document.querySelector('.player--0');
+const player1Elt = document.querySelector('.player--1');
 const btnRollDice = document.querySelector('.btn--roll');
 const btnNewGame = document.querySelector('.btn--new');
 const btnHold = document.querySelector('.btn--hold');
@@ -14,7 +15,9 @@ score0Elt.textContent = 0;
 score1Elt.textContent = 0;
 diceElt.classList.add('hidden');
 
+const scores = [0, 0];
 let currentScore = 0;
+let activePlayer = 0;
 
 //simulate dice roll
 const diceRoll = () => {
@@ -30,10 +33,14 @@ const diceRoll = () => {
   if (dice !== 1) {
     // add dice to current score
     currentScore += dice;
-    current0El.textContent = currentScore;
+    document.getElementById(`current--${activePlayer}`).textContent =
+      currentScore;
   } else {
-    current0El.textContent = 0;
-    console.log('Current Score: ', (currentScore = 0));
+    document.getElementById(`current--${activePlayer}`).textContent = 0;
+    currentScore = 0;
+    activePlayer = activePlayer === 0 ? 1 : 0;
+    player0Elt.classList.toggle('player--active');
+    player1Elt.classList.toggle('player--active');
   }
 };
 
