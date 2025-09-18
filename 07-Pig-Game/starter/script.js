@@ -10,14 +10,34 @@ const current0El = document.querySelector('#current--0');
 const score1Elt = document.querySelector('#score--1');
 const diceElt = document.querySelector('.dice');
 
-// starting conditions
-score0Elt.textContent = 0;
-score1Elt.textContent = 0;
-diceElt.classList.add('hidden');
-let scores = [0, 0];
-let currentScore = 0;
-let activePlayer = 0;
-let playing = true;
+let scores = [0, 0],
+  currentScore = 0,
+  activePlayer = 0,
+  playing = true;
+
+// starting a new game
+const newGame = () => {
+  // starting conditions
+  score0Elt.textContent = 0;
+  score1Elt.textContent = 0;
+  diceElt.classList.add('hidden');
+
+  playing = true;
+  activePlayer = 0;
+  currentScore = 0;
+  scores = [0, 0];
+  score0Elt.textContent = 0;
+  score1Elt.textContent = 0;
+  diceElt.classList.add('hidden');
+  player0Elt.classList.add('player--active');
+  player0Elt.classList.remove('player--winner');
+  player1Elt.classList.remove('player--winner');
+  player1Elt.classList.remove('player--active');
+  document.getElementById(`current--0`).textContent = 0;
+  document.getElementById(`current--1`).textContent = 0;
+};
+newGame();
+btnNewGame.addEventListener('click', newGame);
 
 // switch current player
 const switchPlayer = () => {
@@ -44,7 +64,6 @@ const diceRoll = () => {
       currentScore += dice;
       document.getElementById(`current--${activePlayer}`).textContent =
         currentScore;
-      console.log(currentScore);
     } else {
       // switch the player
       switchPlayer();
@@ -61,11 +80,11 @@ const holdCurrentScore = () => {
       scores[activePlayer];
 
     // check if player's score is >= 100. Finish the game
-    if (scores[activePlayer] >= 10) {
+    if (scores[activePlayer] >= 100) {
       playing = false;
       document.getElementById(
         `current--${activePlayer}`
-      ).textContent = `Player ${activePlayer + 1} wins`;
+      ).textContent = `Winner`;
       document
         .querySelector(`.player--${activePlayer}`)
         .classList.add('player--winner');
