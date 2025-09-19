@@ -10,6 +10,7 @@ const countriesContainer = document.querySelector('.countries');
 // https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}
 
 ///////////////////////////////////////
+/*
 const renderCountry = (countryData, className = '') => {
   const countryCard = `
   <article class="country ${className}">
@@ -63,3 +64,39 @@ const getCountry = (country) => {
   });
 };
 getCountry('cameroon');
+*/
+
+const renderCountry = (countryData, className = '') => {
+  const countryCard = `
+  <article class="country ${className}">
+    <img class="country__img" src="${countryData.flag}" />
+     <div class="country__data">
+        <h3 class="country__name">${countryData.name}</h3>
+        <h4 class="country__region">${countryData.region}</h4>
+        <p class="country__row"><span>👫</span>${(
+          +countryData.population / 1000000
+        ).toFixed(1)} people</p>
+        <p class="country__row"><span>🗣️</span>${
+          countryData.languages[0].name
+        }</p>
+        <p class="country__row"><span>💰</span>${
+          countryData.currencies[0].name
+        }</p>
+      </div>
+  </article>
+  `;
+  countriesContainer.insertAdjacentHTML('beforeend', countryCard);
+  countriesContainer.style.opacity = '1';
+};
+
+// using the fetch api to make AJAX calls
+// const request = fetch('https://restcountries.com/v2/name/portugal');
+// console.log(request);
+
+const getCountryData = (country) => {
+  fetch(`https://restcountries.com/v2/name/${country}`)
+    .then((response) => response.json())
+    .then((data) => renderCountry(data[0]));
+};
+
+console.log(getCountryData('sweden'));
