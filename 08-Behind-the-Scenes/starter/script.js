@@ -29,12 +29,12 @@
 
 // the 'this' keyword
 
-console.log(this);
+console.log('This in the global scope: ', this);
 
 // this with function expression
 const calcAge = function (birthYear) {
   console.log(2025 - birthYear);
-  console.log(this);
+  console.log('This in function expression: ', this);
 };
 
 calcAge(2003);
@@ -42,13 +42,12 @@ calcAge(2003);
 // this with arrow functions
 const calcAgeArrow = birthYear => {
   console.log(2025 - birthYear);
-  console.log(this);
+  console.log('This in arrow functions:', this);
 };
 
 calcAgeArrow(2014);
 
 // this with methods
-
 const jonas = {
   name: 'Chu',
   birthYear: 2003,
