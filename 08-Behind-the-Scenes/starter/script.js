@@ -46,3 +46,22 @@ const calcAgeArrow = birthYear => {
 };
 
 calcAgeArrow(2014);
+
+// this with methods
+
+const jonas = {
+  name: 'Chu',
+  birthYear: 2003,
+  calcAge: function () {
+    console.log(this);
+    console.log(2025 - this.birthYear);
+  },
+};
+
+const matilda = {
+  birthYear: 2014,
+};
+
+matilda.calcAge = jonas.calcAge;
+
+matilda.calcAge();
