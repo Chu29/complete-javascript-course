@@ -94,9 +94,19 @@ const renderCountry = (countryData, className = '') => {
 // console.log(request);
 
 const getCountryData = (country) => {
-  fetch(`https://restcountries.com/v2/name/${country}`)
+  const url = `https://restcountries.com/v2/name/${country}`;
+  fetch(url)
     .then((response) => response.json())
-    .then((data) => renderCountry(data[0]));
+    .then((data) => {
+      renderCountry(data[0]);
+      const neighbor = data[0].borders[0];
+
+      if (!neighbor) return;
+      const neighborUrl = `https://restcountries.com/v2/alpha/${neighbor}`;
+      return fetch(neighborUrl);
+    })
+    .then((response) => response.json())
+    .then((data) => renderCountry(data, 'neighbor'));
 };
 
-console.log(getCountryData('sweden'));
+getCountryData('austria');
