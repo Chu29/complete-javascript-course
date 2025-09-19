@@ -32,9 +32,17 @@
 console.log(this);
 
 // this with function expression
-function calcAge(birthYear) {
+const calcAge = function (birthYear) {
   console.log(2025 - birthYear);
   console.log(this);
-}
+};
 
 calcAge(2003);
+
+// this with arrow functions
+const calcAgeArrow = birthYear => {
+  console.log(2025 - birthYear);
+  console.log(this);
+};
+
+calcAgeArrow(2014);
