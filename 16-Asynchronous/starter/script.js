@@ -229,7 +229,7 @@ whereAmI(52.508, 13.381);
 whereAmI(19.037, 72.873);
 whereAmI(-33.933, 18.474);
 */
-
+/*
 console.log('Test Start');
 setTimeout(() => {
   console.log('0 sec timer');
@@ -245,3 +245,23 @@ Promise.resolve('Resolve promise 2').then((res) => {
 });
 
 console.log('Test end');
+*/
+
+const lotteryPromise = new Promise((resolve, reject) => {
+  console.log('Lottery Draw is happening');
+  setTimeout(() => {
+    if (Math.random() >= 0.5) {
+      resolve('You WIN 💰️');
+    } else {
+      reject(new Error('You lost your money 💩'));
+    }
+  }, 2000);
+});
+
+lotteryPromise
+  .then((response) => {
+    console.log(response);
+  })
+  .catch((error) => {
+    console.error(error);
+  });
