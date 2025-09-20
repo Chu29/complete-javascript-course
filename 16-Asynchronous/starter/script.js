@@ -3,6 +3,32 @@
 const btn = document.querySelector('.btn-country');
 const countriesContainer = document.querySelector('.countries');
 
+const renderCountry = (countryData, className = '') => {
+  const countryCard = `
+  <article class="country ${className}">
+    <img class="country__img" src="${countryData.flag}" />
+     <div class="country__data">
+        <h3 class="country__name">${countryData.name}</h3>
+        <h4 class="country__region">${countryData.region}</h4>
+        <p class="country__row"><span>👫</span>${(
+          +countryData.population / 1000000
+        ).toFixed(1)} people</p>
+        <p class="country__row"><span>🗣️</span>${
+          countryData.languages[0].name
+        }</p>
+        <p class="country__row"><span>💰</span>${
+          countryData.currencies[0].name
+        }</p>
+      </div>
+  </article>
+  `;
+  countriesContainer.insertAdjacentHTML('beforeend', countryCard);
+};
+
+const renderErr = (msg) => {
+  countriesContainer.insertAdjacentText('beforeend', msg);
+};
+
 // NEW COUNTRIES API URL (use instead of the URL shown in videos):
 // https://restcountries.com/v2/name/portugal
 
@@ -66,47 +92,42 @@ const getCountry = (country) => {
 getCountry('cameroon');
 */
 
-const renderCountry = (countryData, className = '') => {
-  const countryCard = `
-  <article class="country ${className}">
-    <img class="country__img" src="${countryData.flag}" />
-     <div class="country__data">
-        <h3 class="country__name">${countryData.name}</h3>
-        <h4 class="country__region">${countryData.region}</h4>
-        <p class="country__row"><span>👫</span>${(
-          +countryData.population / 1000000
-        ).toFixed(1)} people</p>
-        <p class="country__row"><span>🗣️</span>${
-          countryData.languages[0].name
-        }</p>
-        <p class="country__row"><span>💰</span>${
-          countryData.currencies[0].name
-        }</p>
-      </div>
-  </article>
-  `;
-  countriesContainer.insertAdjacentHTML('beforeend', countryCard);
-  countriesContainer.style.opacity = '1';
-};
-
 // using the fetch api to make AJAX calls
 // const request = fetch('https://restcountries.com/v2/name/portugal');
 // console.log(request);
 
+const getJSON = (url, errorMsg = 'Something wen wrong') => {
+  return fetch(url).then((response) => {
+    if (!response.ok) throw new Error(`${errorMsg} ${response.status}`);
+    return response.json();
+  });
+};
+
 const getCountryData = (country) => {
-  const url = `https://restcountries.com/v2/name/${country}`;
-  fetch(url)
-    .then((response) => response.json())
+  getJSON(`https://restcountries.com/v2/name/${country}`, 'Country not found')
     .then((data) => {
       renderCountry(data[0]);
       const neighbor = data[0].borders[0];
 
-      if (!neighbor) return;
-      const neighborUrl = `https://restcountries.com/v2/alpha/${neighbor}`;
-      return fetch(neighborUrl);
+      if (!neighbor) throw new Error('No neighbor found');
+
+      // country 2
+      return getJSON(
+        `https://restcountries.com/v2/alpha/${neighbor}`,
+        'Country not found'
+      );
     })
-    .then((response) => response.json())
-    .then((data) => renderCountry(data, 'neighbor'));
+    .then((data) => renderCountry(data, 'neighbor'))
+    .catch((err) => {
+      console.error(`${err} 💥💥💥`);
+      renderErr(`Something went wrong 💥💥 ${err.message}. Try again`);
+    })
+    .finally(() => (countriesContainer.style.opacity = 1));
 };
 
-getCountryData('austria');
+btn.addEventListener('click', () => {
+  getCountryData('australia');
+  if (countriesContainer.textContent != '') {
+    countriesContainer.textContent = '';
+  }
+});

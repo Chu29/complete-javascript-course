@@ -46,7 +46,7 @@ body {
 }
 
 .neighbor::before {
-  content: 'Neighbour country';
+  content: 'Neighbor country';
   width: 100%;
   position: absolute;
   top: -4rem;
@@ -106,6 +106,10 @@ body {
   color: white;
   background-color: orangered;
   cursor: pointer;
+}
+
+.hidden {
+  display: none;
 }
 
 .images {
