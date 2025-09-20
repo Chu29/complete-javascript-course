@@ -293,10 +293,33 @@ const renderCountry = (countryData, className = '') => {
   countriesContainer.style.opacity = 1;
 };
 
-const whereAmI = async (country) => {
-  const res = await fetch(`https://restcountries.com/v2/name/${country}`);
+const getPosition = function () {
+  return new Promise(function (resolve, reject) {
+    // navigator.geolocation.getCurrentPosition(
+    //   position => resolve(position),
+    //   err => reject(err)
+    // );
+    navigator.geolocation.getCurrentPosition(resolve, reject);
+  });
+};
+
+const whereAmI = async () => {
+  // geocoding
+  const pos = await getPosition();
+   const {latitude:lat,longitude:lng}=  pos.coords;
+
+  // reverse geocoding
+  const resGeo = await fetch(
+    `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lng}`
+  );
+  const dataGeo = await resGeo.json();
+  console.log(dataGeo);
+
+  const res = await fetch(
+    `https://restcountries.com/v2/name/${dataGeo.country}`
+  );
   const data = await res.json();
   renderCountry(data[0]);
 };
 
-whereAmI('cameroon');
+whereAmI();
