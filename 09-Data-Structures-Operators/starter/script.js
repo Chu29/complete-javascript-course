@@ -43,6 +43,9 @@ const restaurant = {
       `Order received! ${this.starterMenu[starterIndex]} ${this.mainMenu[mainIndex]} will be delivered to ${address} at ${time}`
     );
   },
+  orderPasta: function (ing1, ing2, ing3) {
+    console.log(`Here is your delicious pasta with ${ing1}, ${ing2}, ${ing3}`);
+  },
 
   openingHours: {
     thu: {
@@ -65,6 +68,22 @@ const arr = [1, 2, 3];
 const newArr = [...arr, 4, 5];
 console.log(arr);
 console.log(newArr);
+
+// Copy array
+const newMenuCopy = [...restaurant.mainMenu];
+console.log(newMenuCopy);
+
+const menu = [...restaurant.mainMenu, ...restaurant.starterMenu];
+console.log(menu);
+
+const ingredients = [
+  prompt(`Lets make pasta! Ingredient 1`),
+  prompt(`Ingredient 2`),
+  prompt(`Ingredient 3`),
+];
+console.log(ingredients);
+
+restaurant.orderPasta(...ingredients);
 
 /*
 restaurant.orderDelivery({
