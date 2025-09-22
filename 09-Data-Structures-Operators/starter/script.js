@@ -63,6 +63,7 @@ const restaurant = {
   },
 };
 
+/*
 // The Spread Operator (...)
 const arr = [1, 2, 3];
 const newArr = [...arr, 4, 5];
@@ -92,7 +93,6 @@ restaurant.orderDelivery({
   mainIndex: 1,
   starterIndex: 3,
 });
-
 
 // Objects Destructuring
 const { name, openingHours, categories } = restaurant;
